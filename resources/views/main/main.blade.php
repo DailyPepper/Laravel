@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($articles ?? '' as $article)
+    @foreach($articles as $article)
     <tr>
       <th scope="row">{{$article->date}}</th>
       <td>{{$article->name}}</td>

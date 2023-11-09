@@ -40,9 +40,9 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/', [MainController::class, 'index']);
 Route::get('/galery/{img}', [MainController::class, 'galery']);
 
-Route::get('/', function(){
-    return view('main.main');
-});
+// Route::get('/', function(){
+//     return view('main.main');
+// });
 
 Route::get('/contact', function(){
     $data = [
