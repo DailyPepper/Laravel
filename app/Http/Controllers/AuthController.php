@@ -23,16 +23,16 @@ class AuthController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            // 'role'=>'reader',
+            'role'=>'reader',
         ]);
         $user->createToken('MyAppTokens')->plainTextToken;
         return redirect()->route('login');
-        $form = [
-            'name' => $request->name,
-            'email' => request('email'),
-        ];
+        // $form = [
+        //     'name' => $request->name,
+        //     'email' => request('email'),
+        // ];
 
-        return response()->json($form);
+        // return response()->json($form);
     }
 
     public function login(){
