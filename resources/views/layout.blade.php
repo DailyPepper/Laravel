@@ -32,30 +32,31 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link @activeLink('/')" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/contact">Contact</a>
+        <a class="nav-link @activeLink('contact')" href="/contact">Contact</a>
       </li>
       @can('create')
       <li class="nav-item">
-        <a class="nav-link" href="/article/create">Create Article</a>
+        <a class="nav-link @activeLink('article/create')" href="/article/create">Create Article</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/comment/all">Comment Moderation</a>
+        <a class="nav-link @activeLink('comment/all')" href="/comment/all">Comment Moderation</a>
       </li>
       @endcan
-      <!-- <li class="nav-item dropdown">
+      @auth
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Dropdown
+          New comment {{auth()->user()->unreadNotifications->count()}}
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          @foreach(auth()->user()->unreadNotifications as $notification)
+            <a class="dropdown-item" href="/article/{{$notification->data['article']['id']}}?notify={{$notification->id}}">For Article: {{$notification->data['article']['title']}}</a>
+          @endforeach
         </div>
-      </li> -->
+      </li>
+      @endauth
     </ul>
     @guest
        <a href="/create" class="btn btn-outline-success my-2 my-sm-0 mr-2">Registr</a>
