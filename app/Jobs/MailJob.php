@@ -36,6 +36,6 @@ class MailJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('danielkudinov17@gmail.com')->send(new CommentMail($this->comment, $this->text_article));
+        Mail::to('danielkudinov@mail.ru')->send(new CommentMail($this->comment, $this->text_article));
     }
 }
