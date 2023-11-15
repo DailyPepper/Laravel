@@ -27,6 +27,7 @@ class ArticleController extends Controller
          });
         
         return view('article.index', ['articles'=>$article]);
+        // return response()->json($article,201);
     }
 
     /**
@@ -71,6 +72,7 @@ class ArticleController extends Controller
             }
         }
         return redirect()->route('article.index');
+        // return response()->json($result,201);
     }
 
     /**
@@ -93,6 +95,7 @@ class ArticleController extends Controller
         });
         
         return view('article.show', ['article'=>$article, 'comments'=>$comments]);
+        // return responsve()->json($article,201);
     }
 
     /**
@@ -105,6 +108,7 @@ class ArticleController extends Controller
     {
         Gate::authorize('create', [self::class]);
         return view('article.edit', ['article'=>$article]);
+        // return responsve()->json($article,201);
     }
 
     /**
@@ -136,6 +140,7 @@ class ArticleController extends Controller
             }
         }
         return redirect()->route('article.show', ['article'=>$article]);
+        // return responsve()->json($article,201);
     }
 
     /**
@@ -157,5 +162,6 @@ class ArticleController extends Controller
             }
         }
         return redirect()->route('article.index');
+        // return response()->json($article->delete(), 201);
     }
 }

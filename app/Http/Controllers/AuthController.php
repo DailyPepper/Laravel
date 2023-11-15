@@ -25,8 +25,16 @@ class AuthController extends Controller
             'password'=>Hash::make($request->password),
             'role'=>'reader',
         ]);
-        $user->createToken('MyAppTokens')->plainTextToken;
+        $token = $user->createToken('MyAppTokens')->plainTextToken;
+        $response = [
+            'user' =>$user,
+            'token' => $token,
+
+        ];
+        // return response()->json($response, 201);
         return redirect()->route('login');
+
+
         // $form = [
         //     'name' => $request->name,
         //     'email' => request('email'),
@@ -46,15 +54,34 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials, $request->remember)){
+
+            // return response('Bad login', 401);
+
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
+
+        $user = User::where('email', request('email')) -> first();
+        $token = $user->createToken('MyAppTokens')->plainTextToken;
+        $response = [
+            'user' =>$user,
+            'token' => $token,
+
+        ];
+        // return response()->json($response, 201);
+
+
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
     public function logout(Request $request){
         Auth::logout();
+
+        // return response(['Message'=>'Log out'], 201);
+
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
