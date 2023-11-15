@@ -12,6 +12,6 @@ class MainController extends Controller
     }
 
     public function galery($img){
-        return view('main.galery', ['img'=>$img]);
+        return view('main.galerey', ['img' => $img]); 
     }
 }
