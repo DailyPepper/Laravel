@@ -32,7 +32,7 @@ class statMail extends Mailable
      */
     public function build()
     {
-        return $this->from(env('danielkudinov@mail.ru'))
+        return $this->from('danielkudinov@mail.ru')
                     ->view('mail.stat')
                     ->with([
                         'articleCount' => $this->articleCount,

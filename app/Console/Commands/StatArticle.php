@@ -3,13 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Mail\statMail;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
+use App\Mail\statMail;
 use App\Models\Path;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
-
 
 
 class StatArticle extends Command
@@ -50,7 +49,7 @@ class StatArticle extends Command
         Log::alert(Carbon::now());
 
         Path::whereNotNull('id')->delete();        
-        Mail::to('moosbeere_O@mail.ru')->send(new StatMail($articleCount, $commentCount));
+        Mail::to('danielkudinov@mail.ru')->send(new statMail($articleCount, $commentCount));
         return 0;
     }
 }

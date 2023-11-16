@@ -17,7 +17,7 @@
         created(){
             window.Echo.channel('test').listen('EventNewArticle', (name)=>{
                 console.log(name);
-                this.msg=name.article.titlel;
+                this.msg=name.article.title;
                 
             })
         }
